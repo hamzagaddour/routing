@@ -12,13 +12,11 @@
   >
     {{ user.prenom }}
   </li> -->
-  <li
-  (click)="redirection(user)"
-  *ngFor="let user of users"
->
-  {{ user.prenom }}
-</li>
+  <li (click)="redirection(user)" *ngFor="let user of users">
+    {{ user.prenom }}
+  </li>
   <!-- <li [routerLink]="[user.id, user.nom]" *ngFor="let user of users">
     {{user.prenom}}
   </li> -->
 </ul>
+<router-outlet></router-outlet>

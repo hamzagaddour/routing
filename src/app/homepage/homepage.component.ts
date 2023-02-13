@@ -10,7 +10,7 @@ export class HomepageComponent implements OnInit{
 
   constructor(private router : Router){}
   ngOnInit(): void {
-    console.log(this.router);
+    //console.log(this.router);
 
   }
   redirection(){

@@ -3,6 +3,8 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { UserComponent } from './user/user.component';
+import { AuthGuard } from './auth.guard';
+import { UserEditComponent } from './user-edit/user-edit.component';
 
 const routes: Routes = [
   {
@@ -11,12 +13,29 @@ const routes: Routes = [
   },
   {
     path : "users",
-    component : UsersComponent
+    canActivate : [AuthGuard],
+    canActivateChild:[AuthGuard],
+    component : UsersComponent,
+    children : [
+      {
+        path : ":id/edit",
+        canDeactivate:[AuthGuard],
+        component : UserEditComponent
+      },
+      {
+        path : ":id",
+        data:{
+          title : "User Liste"
+        },
+        resolve:{
+          user: AuthGuard
+        },
+        component : UserComponent
+      },
+    ]
   },
-  {
-    path : "users/:id",
-    component : UserComponent
-  },
+  {path:"**", redirectTo:""}
+
 ];
 
 @NgModule({

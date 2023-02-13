@@ -1,7 +1,7 @@
 import { Router, ActivatedRoute } from '@angular/router';
 import { Component } from '@angular/core';
 
-interface User {
+export interface User {
   id : number,
   nom : string,
   prenom : string
@@ -49,6 +49,7 @@ export class UsersComponent {
       queryParams : {
         nom : user.nom
       },
+      queryParamsHandling:"merge",
       fragment : 'foo'
     })
   }
